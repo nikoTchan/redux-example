@@ -1,12 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 
 const reducer = (state, action) => {
-  if (action.type === 'ADD_TO_CART') {
+  if (action.type === "REPLACE_PRODUCTS") {
+    return {
+      ...state,
+      products: action.products
+    };
+  } else if (action.type === "ADD_TO_CART") {
     return {
       ...state,
       cart: state.cart.concat(action.product)
     };
-  } else if (action.type === 'REMOVE_FROM_CART') {
+  } else if (action.type === "REMOVE_FROM_CART") {
     return {
       ...state,
       cart: state.cart.filter(product => product.id !== action.product.id)
@@ -23,6 +28,6 @@ const logger = store => next => action => {
   console.log('next state', store.getState());
   console.groupEnd(action.type);
   return result;
-}
+};
 
-export default createStore(reducer, { cart: [] }, applyMiddleware(logger));
+export default createStore(reducer, { cart: [], products: [] }, applyMiddleware(logger));

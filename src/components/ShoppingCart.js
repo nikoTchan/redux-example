@@ -36,7 +36,7 @@ const ShoppingCart = ({ cart, removeFromCart }) => {
   );
 };
 
-const mapsStateToProps = state => {
+const mapStateToProps = state => {
   return {
     cart: state.cart
   };
@@ -50,4 +50,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapsStateToProps, mapDispatchToProps)(ShoppingCart);
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
